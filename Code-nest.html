@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Code‑Nest — Web Developer · One‑Page & Multi‑Page Websites</title>
+  <meta name="description" content="Code‑Nest — Web developer for small businesses. We build one‑page and multi‑page websites, landing pages, and custom web applications." />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta property="og:title" content="Code‑Nest — Web Development for Small Businesses" />
+  <meta property="og:description" content="One‑page professional websites, landing pages, and custom web apps." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://code-nest.eu" />
+  <meta property="og:image" content="/images/og-codenest.jpg" />
+  <style>
+    :root{
+      --bg:#0b1220;--card:#0f172a;--muted:#a5b4fc;--text:#e5e7eb;--brand:#60a5fa;--brand2:#93c5fd;--accent:#111827;--radius:16px;--shadow:0 10px 30px rgba(0,0,0,.35);
+      --max:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif}
+    img{max-width:100%;display:block}
+    a{color:var(--brand2);text-decoration:none}
+    a:hover{opacity:.95;text-decoration:underline}
+    .container{max-width:var(--max);margin:auto;padding:0 20px}
+    header{position:sticky;top:0;z-index:50;background:rgba(10,15,28,.75);backdrop-filter:blur(10px);border-bottom:1px solid #1f2937}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#0b1220,#1e3a8a);border:1px solid #1f3a7a;display:grid;place-items:center}
+    .logo span{font-weight:900;color:#fff;font-size:18px;letter-spacing:1px}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav a{padding:8px 12px;border-radius:10px}
+    nav a:hover{background:#0f172a}
+    .btn{display:inline-block;background:var(--brand);color:#0b1220;padding:10px 16px;border-radius:12px;font-weight:700;border:0}
+    .btn:hover{filter:brightness(1.05)}
+    .btn.outline{background:transparent;border:1px solid #2b3b5a;color:#e5e7eb}
+    .hero{background:radial-gradient(1000px 300px at 50% -40%,rgba(96,165,250,.18),transparent),linear-gradient(#0b1220,#0b1220)}
+    .hero-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:64px 0}
+    .hero h1{font-size:44px;line-height:1.15;margin:0}
+    .hero p{color:#c7d2fe;margin-top:12px}
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+    .badge{border:1px solid #263a6b;background:#0f1a36;padding:6px 10px;border-radius:999px;font-size:13px;color:#c7d2fe}
+    .hero-card{background:#0f172a;border:1px solid #1f2a44;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .hero-card img{aspect-ratio:16/10;object-fit:cover}
+    .hero-card .inside{padding:14px;color:#cbd5e1}
+    section{padding:56px 0;border-top:1px solid #13203d}
+    h2.section{font-size:28px;margin:0 0 18px}
+    .grid{display:grid;gap:18px}
+    .services{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+    .card{background:var(--card);border:1px solid #1e293b;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .card h3{margin:0 0 6px;font-size:18px}
+    .card p{margin:0;color:#cbd5e1;font-size:14px}
+    .process{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .step{position:relative;padding-left:12px}
+    .step:before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--brand);border-radius:50%}
+    .pricing{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .price .tag{font-size:32px;font-weight:800;color:var(--brand)}
+    .price ul{list-style:none;padding:0;margin:10px 0 0}
+    .price li{margin:6px 0;color:#cbd5e1}
+    .contact-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+    form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    input,textarea{width:100%;padding:12px 14px;background:#0b1326;border:1px solid #1f2a44;color:#fff;border-radius:10px}
+    textarea{min-height:120px;resize:vertical}
+    label{font-size:13px;color:#c7d2fe;display:block;margin:10px 0 6px}
+    footer{border-top:1px solid #13203d;padding:28px 0;color:#9aa7bf}
+    @media (max-width: 900px){.hero-wrap,.contact-wrap{grid-template-columns:1fr}nav ul{display:none}}
+  </style>
+  <script>
+    function sendMessage(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = Object.fromEntries(new FormData(form).entries());
+      if(!data.name || !data.email || !data.message){
+        alert('Please fill out your name, email and message.');
+        return;
+      }
+      // TODO: Replace with your Formspree/EmailJS endpoint. Fallback to mailto:
+      window.location.href = `mailto:hello@code-nest.eu?subject=Website%20enquiry%20-%20${encodeURIComponent(data.name)}&body=${encodeURIComponent(data.message + '\n\nPhone: ' + (data.phone||''))}`;
+    }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Code‑Nest",
+    "url": "https://code-nest.eu",
+    "logo": "/images/logo-codenest.png",
+    "sameAs": ["https://github.com/codenest", "https://www.linkedin.com/company/codenest"],
+    "description": "Web development for small businesses. One‑page sites and web applications."
+  }
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo"><span>CN</span></div>
+        <div>
+          <strong>Code‑Nest</strong><br/>
+          <small style="color:#9aa7bf">Web Development for Small Businesses</small>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div>
+        <a class="btn" href="#contact">Get a Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <h1>Web Developer — One‑Page & Multi‑Page Websites & Web Apps</h1>
+        <p>We help small businesses launch fast, mobile‑friendly websites and web applications that convert. From concept to launch in days, not weeks.</p>
+        <div class="badges">
+          <span class="badge">1–5 pages or more</span>
+          <span class="badge">Lightning‑fast load</span>
+          <span class="badge">SEO‑ready</span>
+          <span class="badge">Mobile‑first</span>
+        </div>
+        <a class="btn" href="#pricing">See Packages</a>
+        <a class="btn outline" href="#contact" style="margin-left:8px">Free Quote</a>
+      </div>
+      <div class="hero-card">
+        <img src="C:\Users\vasyb\OneDrive\Desktop\code -nest--\Code-Nest Programmer at Work.png" />
+        
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <h2 class="section">What we do</h2>
+      <div class="grid services">
+        <div class="card"><h3>One‑Page Websites</h3><p>Clean, modern single pages optimised for conversions and SEO.</p></div>
+        <div class="card"><h3>Multi‑Page Sites</h3><p>Business websites with multiple pages (About, Services, Gallery, Contact, etc.).</p></div>
+        <div class="card"><h3>Business Landing Pages</h3><p>Campaign‑ready landing pages with analytics and lead capture.</p></div>
+        <div class="card"><h3>Web Applications</h3><p>Small bespoke tools and dashboards for your workflow.</p></div>
+        <div class="card"><h3>Maintenance</h3><p>Content updates, hosting, monitoring and performance care.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="container">
+      <h2 class="section">Simple process</h2>
+      <div class="grid process">
+        <div class="card step"><h3> Brief</h3><p>We collect your logo, brand colours, text and examples.</p></div>
+        <div class="card step"><h3> Design</h3><p>We craft the layout and copy focused on your goals.</p></div>
+        <div class="card step"><h3> Build</h3><p>We implement fast HTML/CSS/JS for one‑page or multi‑page sites with on‑page SEO.</p></div>
+        <div class="card step"><h3> Launch</h3><p>We deploy to <strong>code‑nest.uk</strong> or your domain with analytics.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="container">
+      <h2 class="section">Transparent pricing</h2>
+      <div class="grid pricing">
+        <div class="card price">
+          <h3>Starter One‑Pager</h3>
+          <div class="tag">£480</div>
+          <ul>
+            <li>Custom one‑page design</li>
+            <li>Contact form (Formspree/EmailJS)</li>
+            <li>Mobile & SEO basics</li>
+          </ul>
+        </div>
+        <div class="card price">
+          <h3>Multi‑Page Site</h3>
+          <div class="tag">£690</div>
+          <ul>
+            <li>Up to 5 pages (Home, About, Services, Gallery, Contact)</li>
+            <li>Blog/News (optional)</li>
+            <li>Google Analytics + enhanced SEO</li>
+          </ul>
+        </div>
+        <div class="card price">
+          <h3>Growth Multipage</h3>
+          <div class="tag">from £980</div>
+          <ul>
+            <li>6–10 pages + custom sections</li>
+            <li>Copy assistance & image curation</li>
+            <li>Performance & accessibility review</li>
+          </ul>
+        </div>
+        <div class="card price">
+          <h3>Web App Mini</h3>
+          <div class="tag">from £950</div>
+          <ul>
+            <li>Custom web tool</li>
+            <li>Auth & dashboard</li>
+            <li>Hosting setup</li>
+          </ul>
+        </div>
+      </div>
+      <p style="color:#9aa7bf;margin-top:10px">Prices exclude domain/hosting. Typical running cost: £40–£80/year.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section">Get a free quote</h2>
+      <div class="contact-wrap">
+        <div class="card">
+          <form onsubmit="sendMessage(event)">
+            <label for="name">Name</label>
+            <input id="name" name="name" placeholder="Your name" />
+            <div class="row">
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@company.com" />
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" placeholder="07…" />
+              </div>
+            </div>
+            <label for="message">Project details</label>
+            <textarea id="message" name="message" placeholder="Tell us about your business, pages needed, and deadline…"></textarea>
+            <div style="margin-top:12px"><button class="btn" type="submit">Send</button></div>
+          </form>
+        </div>
+        <div class="card">
+          <p><strong>Email:</strong> <a href="mailto:hello@code-nest.uk">hello@code-nest.uk</a></p>
+          <p><strong>Domain:</strong> <a href="https://code-nest.uk" target="_blank" rel="noreferrer">code‑nest.uk</a></p>
+          <p><strong>Social:</strong> <a href="#">LinkedIn</a> · <a href="#">GitHub</a></p>
+          <p style="color:#9aa7bf">We typically respond within 24h (Mon–Fri).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>© <span id="y"></span> Code‑Nest. All rights reserved.</div>
+      <div>Made with ❤ in London.</div>
+    </div>
+    <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+  </footer>
+</body>
+</html>
